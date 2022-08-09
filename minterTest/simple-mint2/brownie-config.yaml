@@ -1,0 +1,43 @@
+# change the build directory to be within react's scope
+project_structure:
+    build: client/artifacts
+
+
+dependencies:
+    - OpenZeppelin/openzeppelin-contracts@4.5.0
+
+
+# automatically fetch contract sources from Etherscan
+autofetch_sources: True
+dotenv: .env
+
+
+compiler:
+    solc:
+        version: '0.8.4'
+        optimizer:
+            enabled: true
+            runs: 200
+        remappings:
+            - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.5.0"
+
+
+networks:
+  default: development
+  development:
+
+    update_interval: 60
+    verify: False
+
+  kovan:
+
+    verify: False
+    update_interval: 60
+
+
+wallets:
+  from_key: ${PRIVATE_KEY}
+
+
+# enable output of development artifacts to load with react
+dev_deployment_artifacts: true
